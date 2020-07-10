@@ -29,6 +29,8 @@ class ViewController: UITableViewController {
         }
         pictures.sort(by: { $0 < $1 })
         print(pictures)
+        
+       navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +49,12 @@ class ViewController: UITableViewController {
             vc.imageName = "Picture \(indexPath.row + 1) of \(pictures.count)"
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func shareApp() {
+        let vc = UIActivityViewController(activityItems: ["Download this app ''Projcet2''!"], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
