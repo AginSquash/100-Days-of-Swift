@@ -22,10 +22,14 @@ class DetailViewController: UIViewController {
 
     @objc func shareFlag() {
         guard let image = imageView.image?.jpegData(compressionQuality: 1.0) else {
-            print("No data")
+            print("No image")
             return
         }
-        let avc = UIActivityViewController(activityItems: [image, imageName?.uppercased()], applicationActivities: [])
+        guard let name = imageName?.uppercased() else {
+            print("No name")
+            return
+        }
+        let avc = UIActivityViewController(activityItems: [image, name], applicationActivities: [])
         avc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(avc, animated: true)
     }
