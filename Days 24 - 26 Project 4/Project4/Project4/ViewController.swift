@@ -13,7 +13,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var websites = ["apple.com", "hackingwithswift.com"]
-    
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
@@ -66,17 +65,29 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        let url = navigationAction.request.url
-        
-        if let host = url?.host {
+        guard let url = navigationAction.request.url else {
+             decisionHandler(.allow)
+            return
+        }
+        if let host = url.host {
             for website in websites {
+                print(host)
                 if host.contains(website) {
                     decisionHandler(.allow)
                     return
                 }
             }
         }
+        if url == URL(string: "about:blank")! {
+            decisionHandler(.allow)
+            return
+        }
+        
         decisionHandler(.cancel)
+        let ac = UIAlertController(title: "Blocked!", message: "This link is under block", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(ac, animated: true)
+        
     }
 }
 
