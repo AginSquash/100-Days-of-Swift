@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var websites = ["apple.com", "hackingwithswift.com"]
+    
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
@@ -43,7 +44,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
-            progressView.progress = Float(webView.estimatedProgress)
+            let wrappedValue = Float(webView.estimatedProgress)
+            progressView.progress = wrappedValue
+            if wrappedValue == 1.0 {
+                progressView.isHidden = true
+            } else if wrappedValue <= 0.1 {
+                progressView.isHidden = false
+            }
         }
     }
 
@@ -73,7 +80,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
         }
         if let host = url.host {
             for website in websites {
-                print(host)
                 if host.contains(website) {
                     decisionHandler(.allow)
                     return
