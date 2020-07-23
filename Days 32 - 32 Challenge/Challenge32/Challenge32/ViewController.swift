@@ -17,6 +17,11 @@ class ViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddAlert))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
+        
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
+        toolbarItems = [spacer, shareButton, spacer]
+        navigationController?.isToolbarHidden = false
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +50,12 @@ class ViewController: UITableViewController {
     @objc func refresh() {
         list = [String]()
         tableView.reloadData()
+    }
+    
+    @objc func share() {
+        let avc = UIActivityViewController(activityItems: [list.joined(separator: "\n")], applicationActivities: [])
+        avc.popoverPresentationController?.barButtonItem = toolbarItems![1]
+        present(avc, animated: true)
     }
     
     func addElement(_ element: String) {
