@@ -12,4 +12,8 @@ struct Petition: Codable {
     var title: String
     var body: String
     var signatureCount: Int
+    
+    func contain(_ text: String) -> Bool{
+        title.contains(text) || body.contains(text)
+    }
 }

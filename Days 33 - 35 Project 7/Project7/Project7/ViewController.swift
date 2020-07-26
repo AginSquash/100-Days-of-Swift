@@ -11,9 +11,14 @@ import UIKit
 class ViewController: UITableViewController {
 
     var petitions = [Petition]()
+    var petitions_all = [Petition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(credits))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(filter))
+        
         
         let urlString: String
 
@@ -39,10 +44,32 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
                petitions = jsonPetitions.results
+               petitions_all = petitions
                tableView.reloadData()
         }
     }
 
+    @objc func credits() {
+        let alert = UIAlertController(title: "Credits", message: "Thanks to Sanya and Molly\nData comes from the We The People API of the Whitehouse.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @objc func filter() {
+        let alert = UIAlertController(title: "Filter", message: "Enter what you want to find", preferredStyle: .alert)
+        alert.addTextField()
+        let filterButton = UIAlertAction(title: "OK", style: .default) { [weak self, weak alert] action in
+            guard let alert = alert else { return }
+            let filter = alert.textFields?[0].text
+            if let filter = filter {
+                self?.petitions = self?.petitions_all.filter({ $0.contain(filter) }) ?? [Petition]()
+                self?.tableView.reloadData()
+            }
+        }
+        alert.addAction(filterButton)
+        present(alert, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return petitions.count
     }
