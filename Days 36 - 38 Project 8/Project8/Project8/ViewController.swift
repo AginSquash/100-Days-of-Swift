@@ -24,6 +24,7 @@ class ViewController: UIViewController {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    var totalAnswered = 0
     var level = 1
     
     
@@ -137,6 +138,9 @@ class ViewController: UIViewController {
                 // calculate the frame of this button using its column and row
                 let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
+                
+                letterButton.layer.borderWidth = 1
+                letterButton.layer.borderColor = UIColor.lightGray.cgColor
 
                 // add it to the buttons view
                 buttonsView.addSubview(letterButton)
@@ -219,12 +223,25 @@ class ViewController: UIViewController {
 
                 currentAnswer.text = ""
                 score += 1
-
-                if score % 7 == 0 {
+                totalAnswered += 1
+                
+                if totalAnswered % 7 == 0 {
                     let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
                     ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                     present(ac, animated: true)
                 }
+            } else {
+                score -= 1
+                
+                for btn in activatedButtons {
+                    btn.isHidden = false
+                }
+                activatedButtons.removeAll()
+                currentAnswer.text = ""
+                
+                let ac = UIAlertController(title: "Error!", message: "You enter wrong word!", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                present(ac, animated: true)
             }
     }
 
