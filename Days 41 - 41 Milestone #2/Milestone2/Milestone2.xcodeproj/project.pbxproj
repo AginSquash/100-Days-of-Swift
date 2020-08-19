@@ -15,6 +15,7 @@
 		CDBC6DE824EDB624006AD6A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBC6DE624EDB624006AD6A6 /* LaunchScreen.storyboard */; };
 		CDBC6DF324EDB625006AD6A6 /* Milestone2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC6DF224EDB625006AD6A6 /* Milestone2Tests.swift */; };
 		CDBC6DFE24EDB625006AD6A6 /* Milestone2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC6DFD24EDB625006AD6A6 /* Milestone2UITests.swift */; };
+		CDBC6E0C24EDC7E6006AD6A6 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = CDBC6E0B24EDC7E6006AD6A6 /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CDBC6DF924EDB625006AD6A6 /* Milestone2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Milestone2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBC6DFD24EDB625006AD6A6 /* Milestone2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone2UITests.swift; sourceTree = "<group>"; };
 		CDBC6DFF24EDB625006AD6A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDBC6E0B24EDC7E6006AD6A6 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				CDBC6DDB24EDB623006AD6A6 /* AppDelegate.swift */,
 				CDBC6DDD24EDB623006AD6A6 /* SceneDelegate.swift */,
 				CDBC6DDF24EDB623006AD6A6 /* ViewController.swift */,
+				CDBC6E0B24EDC7E6006AD6A6 /* words.txt */,
 				CDBC6DE124EDB623006AD6A6 /* Main.storyboard */,
 				CDBC6DE424EDB624006AD6A6 /* Assets.xcassets */,
 				CDBC6DE624EDB624006AD6A6 /* LaunchScreen.storyboard */,
@@ -233,6 +236,7 @@
 			files = (
 				CDBC6DE824EDB624006AD6A6 /* LaunchScreen.storyboard in Resources */,
 				CDBC6DE524EDB624006AD6A6 /* Assets.xcassets in Resources */,
+				CDBC6E0C24EDC7E6006AD6A6 /* words.txt in Resources */,
 				CDBC6DE324EDB623006AD6A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

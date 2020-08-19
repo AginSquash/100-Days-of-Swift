@@ -12,6 +12,16 @@ class ViewController: UIViewController {
     @IBOutlet var WordLabel: UILabel!
     
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    var allWords = [String]()
+    var choosenWord = String()
+    
+    var usedButtons = [UIButton]()
+    
+    var score = 0 {
+        didSet {
+            ScoreLabel.text = "Score: \(score)"
+        }
+    }
     
     override func loadView() {
         super.loadView()
@@ -19,7 +29,7 @@ class ViewController: UIViewController {
         
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
-        buttonsView.backgroundColor = .red
+        //buttonsView.backgroundColor = .red
         view.addSubview(buttonsView)
         
         NSLayoutConstraint.activate([
@@ -40,7 +50,7 @@ class ViewController: UIViewController {
                 
                 let charButton = UIButton(type: .system)
                 charButton.setTitle(letters[charNumber], for: .normal)
-                charButton.backgroundColor = .green
+                //charButton.backgroundColor = .green
                 charButton.layer.borderWidth = 1
                 charButton.layer.borderColor = UIColor.gray.cgColor
                 
@@ -64,11 +74,62 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    
-        }
-
-    @objc func wordChoosen(_ sender: UIButton) {
         
+        loadGame()
+    }
+
+    func loadGame() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let url = Bundle.main.url(forResource: "words", withExtension: "txt") {
+                if let wordsContents = try? String(contentsOf: url) {
+                    self.allWords = wordsContents.components(separatedBy: "\n")
+                    
+                    DispatchQueue.main.async {
+                        self.newWord()
+                    }
+                }
+            }
+        }
+    }
+    
+    func newWord() {
+        self.choosenWord = self.allWords.randomElement() ?? "ERROR"
+        self.WordLabel.text = String(repeating: "?", count: self.choosenWord.count)
+        
+        for btn in self.usedButtons {
+            btn.isHidden = false
+        }
+    }
+    
+    
+    @objc func wordChoosen(_ sender: UIButton) {
+        guard let buttonLabel = sender.titleLabel?.text?.lowercased() else { return }
+        
+        var wordCopy = choosenWord
+        var index = wordCopy.firstIndex(of: Character(buttonLabel))
+        
+        if index == nil {
+            score -= 1
+            let ac = UIAlertController(title: "Wrong letter", message: "Try again", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+        }
+        
+        while index != nil {
+            wordCopy.replaceSubrange(index!...index!, with: " ")
+            self.WordLabel.text!.replaceSubrange(index!...index!, with: buttonLabel.uppercased())
+            index = wordCopy.firstIndex(of: Character(buttonLabel))
+            score += 1
+        }
+        
+        sender.isHidden = true
+        usedButtons.append(sender)
+        
+        if choosenWord == self.WordLabel.text?.lowercased() {
+            let ac = UIAlertController(title: "Win!", message: "Yes, it's \(choosenWord)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "New word!", style: .default, handler: { _ in self.newWord() }))
+            present(ac, animated: true, completion: nil)
+        }
     }
 
 }
