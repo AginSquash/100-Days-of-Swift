@@ -20,8 +20,7 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(filter))
         
         
-        performSelector(inBackground: #selector(fetchJSON), with: nil)
-        /*
+        
         let urlString: String
 
         if navigationController?.tabBarItem.tag == 0 {
@@ -42,48 +41,10 @@ class ViewController: UITableViewController {
             }
             self.showError()
         }
-        */
-    }
-    
-    @objc func fetchJSON() {
-        let urlString: String
-
-        if navigationController?.tabBarItem.tag == 0 {
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
-        } else {
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
-        }
-
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
-            }
-        }
-
-        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
+        
     }
     
     
-    func parse(json: Data) {
-        let decoder = JSONDecoder()
-
-        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            petitions = jsonPetitions.results
-            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-        } else {
-            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
-        }
-
-    }
-
-    @objc func showError() {
-        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-    }
-    
-    /*
     func parse(json: Data) {
         let decoder = JSONDecoder()
         
@@ -94,7 +55,7 @@ class ViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-    } */
+    }
 
     @objc func credits() {
         let alert = UIAlertController(title: "Credits", message: "Thanks to Sanya and Molly\nData comes from the We The People API of the Whitehouse.", preferredStyle: .alert)
@@ -108,9 +69,15 @@ class ViewController: UITableViewController {
         let filterButton = UIAlertAction(title: "OK", style: .default) { [weak self, weak alert] action in
             guard let alert = alert else { return }
             let filter = alert.textFields?[0].text
-            if let filter = filter {
-                self?.petitions = self?.petitions_all.filter({ $0.contain(filter) }) ?? [Petition]()
-                self?.tableView.reloadData()
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let filter = filter {
+                    self?.petitions = self?.petitions_all.filter({ $0.contain(filter) }) ?? [Petition]()
+                    //self?.tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                }
             }
         }
         alert.addAction(filterButton)
@@ -135,13 +102,13 @@ class ViewController: UITableViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    /*
+    
     func showError() {
         DispatchQueue.main.async {
             let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(ac, animated: true)
         }
-    } */
+    }
 }
 
