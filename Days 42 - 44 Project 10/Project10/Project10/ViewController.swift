@@ -72,6 +72,20 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let ac = UIAlertController(title: "What you want tot do?", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            self?.people.remove(at: indexPath.item)
+            self?.collectionView.reloadData()
+        }))
+        ac.addAction(UIAlertAction(title: "Rename", style: .default, handler: { [weak self] _ in
+            self?.renamePerson(at: indexPath)
+        }))
+        
+        present(ac, animated: true, completion: nil)
+    }
+    
+    func renamePerson(at indexPath: IndexPath) {
         let person = people[indexPath.item]
         
         let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
