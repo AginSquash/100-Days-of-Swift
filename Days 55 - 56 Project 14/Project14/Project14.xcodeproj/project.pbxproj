@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD075D1C2503CD850059520F /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD075D1B2503CD850059520F /* game_over.mp3 */; };
+		CD075D202503D07E0059520F /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD075D1F2503D07E0059520F /* FireParticles.sks */; };
 		CD0EEB5424FA70DE0090A533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0EEB5324FA70DE0090A533 /* AppDelegate.swift */; };
 		CD0EEB5624FA70DE0090A533 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD0EEB5524FA70DE0090A533 /* GameScene.sks */; };
 		CD0EEB5A24FA70DE0090A533 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0EEB5924FA70DE0090A533 /* GameScene.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD075D1B2503CD850059520F /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_over.mp3; sourceTree = "<group>"; };
+		CD075D1F2503D07E0059520F /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FireParticles.sks; path = "../../../../Days 45 - 47 Project 11/Project11/Project11/Content/FireParticles.sks"; sourceTree = "<group>"; };
 		CD0EEB5024FA70DE0090A533 /* Project14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0EEB5324FA70DE0090A533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD0EEB5524FA70DE0090A533 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		CD0EEB6824FA715F0090A533 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				CD075D1B2503CD850059520F /* game_over.mp3 */,
 				CD0EEB6924FA715F0090A533 /* whackBad.caf */,
 				CD0EEB6A24FA715F0090A533 /* whack.caf */,
 				CD0EEB6B24FA715F0090A533 /* gameOver@2x.png */,
@@ -98,6 +103,7 @@
 				CD0EEB6E24FA715F0090A533 /* penguinGood@2x.png */,
 				CD0EEB6F24FA715F0090A533 /* whackMask@2x.png */,
 				CD0EEB7024FA715F0090A533 /* whackBackground@2x.png */,
+				CD075D1F2503D07E0059520F /* FireParticles.sks */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -167,9 +173,11 @@
 				CD0EEB7124FA715F0090A533 /* whackBad.caf in Resources */,
 				CD0EEB7824FA715F0090A533 /* whackBackground@2x.png in Resources */,
 				CD0EEB7424FA715F0090A533 /* penguinEvil@2x.png in Resources */,
+				CD075D1C2503CD850059520F /* game_over.mp3 in Resources */,
 				CD0EEB7624FA715F0090A533 /* penguinGood@2x.png in Resources */,
 				CD0EEB5624FA70DE0090A533 /* GameScene.sks in Resources */,
 				CD0EEB6124FA70DF0090A533 /* Assets.xcassets in Resources */,
+				CD075D202503D07E0059520F /* FireParticles.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
