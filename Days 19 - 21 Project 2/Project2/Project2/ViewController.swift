@@ -53,6 +53,16 @@ class ViewController: UIViewController {
         var title: String
         var message: String
         
+        UIView.animate(withDuration: 0.3, delay: 0, options: [],
+                       animations: { sender.transform = CGAffineTransform(scaleX: 1.3, y: 1.3) },
+                       completion: { isFin in
+                            if isFin {
+                                UIView.animate(withDuration: 0.3, delay: 0, options: [],
+                                               animations: { sender.transform = .identity },
+                                               completion: nil)
+                            }
+                       })
+        
         totalAnswered += 1
         if sender.tag == correctAnswer {
             title = "Correct"
