@@ -83,12 +83,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true, completion: nil)
-        currentImage = image
+        UIView.animate(withDuration: 0.2, delay: 0, options: [],
+                       animations: { self.imageView.alpha = 0 },
+                       completion: { isFin in
+                        if isFin {
+                            UIView.animate(withDuration: 0.2, delay: 0, options: [],
+                                           animations: {
+                                            self.currentImage = image
+                                            let beginImage = CIImage(image: self.currentImage)
+                                            self.currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+                                            
+                                            self.applyProcessing()
+                                            
+                                            self.imageView.alpha = 1
+                                           },
+                                           completion: nil)
+                        }
+                       })
         
-        let beginImage = CIImage(image: currentImage)
-        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
-        
-        applyProcessing()
     }
     
     func applyProcessing() {
