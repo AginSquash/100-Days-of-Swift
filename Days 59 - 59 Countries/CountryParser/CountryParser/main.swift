@@ -57,6 +57,8 @@ func main() {
                 flag_url = c_withFlagIMG.flag_url!.absoluteString
                 flag_url = "https:" + flag_url
                 flag_url = flag_url.replacingOccurrences(of: "22px", with: "128px")
+                
+                print(flag_url)
             }
             
             let newC = CountryWithFlagIMG(name: c.name, flag_img: URL(string: flag_url), tld: c.tld, cca2: c.cca2, ccn3: c.ccn3, cca3: c.cca3, cioc: c.cioc, currencies: c.currencies, callingCodes: c.callingCodes, capital: c.capital, altSpellings: c.altSpellings, region: c.region, subregion: c.subregion, demonyms: c.demonyms, landlocked: c.landlocked, languages: c.languages, latlng: c.latlng, translations: c.translations, borders: c.borders, area: c.area, flag: c.flag)
@@ -65,10 +67,10 @@ func main() {
             isoCountries.removeAll(where: { $0.iso_code3 == c.cca3 })
         }
     }
-    
+    newCountries = try! newCountries.sorted(by: { $0.name.common < $1.name.common })
     if let encoded = try? JSONEncoder().encode(newCountries) {
         do {
-            try encoded.write(to: resource.appendingPathComponent("countriesNew.json    "))
+            try encoded.write(to: resource.appendingPathComponent("countries_flags128px.json"))
         } catch {
             print(error.localizedDescription)
         }

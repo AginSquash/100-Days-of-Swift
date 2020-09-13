@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    var countries = [Country]()
+    var countries = [CountryFULL]()
     var countries_flags = [UIImage?]()
     
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountriesReuse", for: indexPath) as? CountryCell ?? CountryCell()
         let country = countries[indexPath.row]
-        cell.label.text = country.name_ru
+        cell.label.text = country.name.common
         
         if indexPath.row >= self.countries_flags.count {
             cell.flagImage.image = nil
@@ -51,11 +51,11 @@ class ViewController: UITableViewController {
     }
 
     func loadCountries() {
-        let resource = Bundle.main.resourceURL!.appendingPathComponent("ISO3166_RU.json")
+        let resource = Bundle.main.resourceURL!.appendingPathComponent("countries_flags150px.json")
         guard let fileURL = try? Data(contentsOf: resource) else {
             fatalError("fileURL is nil")
         }
-        if let decoded = try? JSONDecoder().decode([Country].self, from: fileURL) {
+        if let decoded = try? JSONDecoder().decode([CountryFULL].self, from: fileURL) {
             self.countries = decoded
             
             DispatchQueue.main.async {
@@ -68,14 +68,9 @@ class ViewController: UITableViewController {
     func loadImages() {
         var i = 0
         for country in countries {
-            if let url = country.flag_url {
+            if let url = country.flag_img {
     
-                var str = url.absoluteString
-                str = "https:" + str
-                
-                str = str.replacingOccurrences(of: "22px", with: "128px")
-                
-                let imageData = try? Data(contentsOf: URL(string: str)!)
+                let imageData = try? Data(contentsOf: url)
                 if let image = imageData {
                     self.countries_flags.append(UIImage(data: image))
                 } else {
