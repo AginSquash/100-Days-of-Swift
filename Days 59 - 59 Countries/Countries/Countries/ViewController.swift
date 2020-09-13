@@ -31,12 +31,22 @@ class ViewController: UITableViewController {
         cell.label.text = country.name_ru
         
         if indexPath.row >= self.countries_flags.count {
+            cell.flagImage.image = nil
+            cell.no_img_label.isHidden = false
             return cell
         }
         
         if let image = countries_flags[indexPath.row] {
             cell.flagImage.image = image
+            cell.flagImage.layer.cornerRadius = 5
+            cell.flagImage.layer.borderColor = UIColor.gray.cgColor
+            cell.flagImage.layer.borderWidth = 1
+            cell.no_img_label.isHidden = true
+        } else {
+            cell.flagImage.image = nil
+            cell.no_img_label.isHidden = false
         }
+        
         return cell
     }
 
@@ -59,12 +69,11 @@ class ViewController: UITableViewController {
         var i = 0
         for country in countries {
             if let url = country.flag_url {
-                
-                print("DEBUG: start loadImages")
+    
                 var str = url.absoluteString
                 str = "https:" + str
                 
-                str = str.replacingOccurrences(of: "22px", with: "150px")
+                str = str.replacingOccurrences(of: "22px", with: "128px")
                 
                 let imageData = try? Data(contentsOf: URL(string: str)!)
                 if let image = imageData {

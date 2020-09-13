@@ -11,6 +11,7 @@ class CountryCell: UITableViewCell {
 
     @IBOutlet var flagImage: UIImageView!
     @IBOutlet var label: UILabel!
+    @IBOutlet var no_img_label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

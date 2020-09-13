@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XaE-Zj-VSO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XaE-Zj-VSO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +13,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="val-Mo-rer">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountriesReuse" rowHeight="72" id="bAP-eF-TJ4" customClass="CountryCell" customModule="Countries" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="72"/>
@@ -24,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-GL-d8w">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-GL-d8w">
                                             <rect key="frame" x="20" y="4" width="96" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="96" id="fhU-fC-KW5"/>
@@ -36,20 +34,29 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoi-Q7-v1p">
+                                            <rect key="frame" x="31.5" y="25.5" width="73.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="xoi-Q7-v1p" firstAttribute="centerY" secondItem="a5a-GL-d8w" secondAttribute="centerY" id="OIC-ev-QsM"/>
                                         <constraint firstItem="a5a-GL-d8w" firstAttribute="leading" secondItem="cJY-bC-fbc" secondAttribute="leading" constant="20" symbolic="YES" id="Txu-yW-2Mv"/>
                                         <constraint firstItem="a5a-GL-d8w" firstAttribute="top" secondItem="cJY-bC-fbc" secondAttribute="topMargin" constant="-7" id="ZXt-Gt-x92"/>
                                         <constraint firstItem="a5a-GL-d8w" firstAttribute="top" secondItem="RM6-we-K1I" secondAttribute="top" id="g17-6V-E1n"/>
                                         <constraint firstItem="a5a-GL-d8w" firstAttribute="centerY" secondItem="cJY-bC-fbc" secondAttribute="centerY" id="gRf-2p-rsO"/>
                                         <constraint firstAttribute="trailing" secondItem="RM6-we-K1I" secondAttribute="trailing" constant="35" id="icd-Yb-9L4"/>
                                         <constraint firstItem="a5a-GL-d8w" firstAttribute="bottom" secondItem="RM6-we-K1I" secondAttribute="bottom" id="nYK-z4-kHU"/>
+                                        <constraint firstItem="xoi-Q7-v1p" firstAttribute="centerX" secondItem="a5a-GL-d8w" secondAttribute="centerX" id="nwW-Nq-A6M"/>
                                         <constraint firstItem="RM6-we-K1I" firstAttribute="leading" secondItem="a5a-GL-d8w" secondAttribute="trailing" constant="27" id="ueo-cv-WEM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="flagImage" destination="a5a-GL-d8w" id="AWm-T5-nPp"/>
                                     <outlet property="label" destination="RM6-we-K1I" id="nTh-sp-pIV"/>
+                                    <outlet property="no_img_label" destination="xoi-Q7-v1p" id="r9A-Qx-GtQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,9 +90,4 @@
             <point key="canvasLocation" x="142.02898550724638" y="130.58035714285714"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
