@@ -32,8 +32,12 @@ struct Country: Codable {
     let subregion: String
     let demonyms: c_demonyms
     let landlocked: Bool
+    let languages: [String: String]
+    let latlng: [Double: Double]
+    let translations: c_translations
     let borders: [String]
     let area: Double
+    let flag: String
 }
 
 struct c_name: Codable {
@@ -60,4 +64,39 @@ struct c_demonyms: Codable {
 struct c_demonyms_lang: Codable {
     let f: String
     let m: String
+}
+
+struct c_translations: Codable {
+    let deu: c_name_native
+    let est: c_name_native
+    let ita: c_name_native
+    let fra: c_name_native
+    let rus: c_name_native
+    let spa: c_name_native
+}
+
+
+
+struct CountryWithFlagIMG: Codable {
+    let name: c_name
+    let flag_img: URL?
+    let tld: [String]
+    let cca2: String
+    let ccn3: String
+    let cca3: String
+    let cioc: String
+    let currencies: [String: c_currencies]
+    let callingCodes: [String]
+    let capital: [String]
+    let altSpellings: [String]
+    let region: String
+    let subregion: String
+    let demonyms: c_demonyms
+    let landlocked: Bool
+    let languages: [String: String]
+    let latlng: [Double: Double]
+    let translations: c_translations
+    let borders: [String]
+    let area: Double
+    let flag: String
 }
