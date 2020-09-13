@@ -16,6 +16,7 @@
 		CD0F4251250B5D3B009AD4C5 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0F4250250B5D3B009AD4C5 /* Country.swift */; };
 		CD0F4255250B6291009AD4C5 /* ISO3166_RU.json in Resources */ = {isa = PBXBuildFile; fileRef = CD0F4254250B6291009AD4C5 /* ISO3166_RU.json */; };
 		CD0F4257250B69AF009AD4C5 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0F4256250B69AF009AD4C5 /* CountryCell.swift */; };
+		CDD1CF0A250E77B8007BEC77 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = CDD1CF09250E77B8007BEC77 /* countries.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CD0F4250250B5D3B009AD4C5 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		CD0F4254250B6291009AD4C5 /* ISO3166_RU.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ISO3166_RU.json; sourceTree = "<group>"; };
 		CD0F4256250B69AF009AD4C5 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		CDD1CF09250E77B8007BEC77 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				CD0F4245250B51DB009AD4C5 /* LaunchScreen.storyboard */,
 				CD0F4248250B51DB009AD4C5 /* Info.plist */,
 				CD0F4254250B6291009AD4C5 /* ISO3166_RU.json */,
+				CDD1CF09250E77B8007BEC77 /* countries.json */,
 			);
 			path = Countries;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 				CD0F4247250B51DB009AD4C5 /* LaunchScreen.storyboard in Resources */,
 				CD0F4244250B51DB009AD4C5 /* Assets.xcassets in Resources */,
 				CD0F4255250B6291009AD4C5 /* ISO3166_RU.json in Resources */,
+				CDD1CF0A250E77B8007BEC77 /* countries.json in Resources */,
 				CD0F4242250B51D9009AD4C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
