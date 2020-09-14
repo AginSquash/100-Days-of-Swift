@@ -50,6 +50,20 @@ class ViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailView") as? DetailView {
+            let country = countries[indexPath.row]
+            
+            if indexPath.row < countries_flags.count && countries_flags[indexPath.row] != nil {
+                vc.image = countries_flags[indexPath.row]
+            }
+            
+            vc.text = "\(country.name.common)\nCaptal: \(country.capital.first ?? "???")"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
     func loadCountries() {
         let resource = Bundle.main.resourceURL!.appendingPathComponent("countries_flags150px.json")
         guard let fileURL = try? Data(contentsOf: resource) else {
