@@ -79,8 +79,14 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let placeName = capital.title
         let placeInfo = capital.info
         
-        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let ac = UIAlertController(title: placeName, message: "\(placeInfo)\n Open in new page?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                if let vc = self.storyboard?.instantiateViewController(identifier: "WebView") as? WebVew {
+                    vc.url = URL(string: "https://developer.apple.com/documentation/webkit/wkwebview/")!
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+              } ))
+        ac.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         present(ac, animated: true, completion: nil)
         
     }

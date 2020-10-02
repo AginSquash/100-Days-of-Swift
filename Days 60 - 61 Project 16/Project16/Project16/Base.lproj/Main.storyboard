@@ -41,6 +41,41 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
         </scene>
+        <!--Web Vew-->
+        <scene sceneID="3ff-pv-fpu">
+            <objects>
+                <viewController storyboardIdentifier="WebView" id="lAl-k1-AmE" customClass="WebVew" customModule="Project16" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tir-fE-F0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLj-9J-IDA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ijj-oi-kEG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gLj-9J-IDA" firstAttribute="centerX" secondItem="tir-fE-F0Y" secondAttribute="centerX" id="KIm-zl-hgW"/>
+                            <constraint firstItem="gLj-9J-IDA" firstAttribute="top" secondItem="tir-fE-F0Y" secondAttribute="topMargin" id="QyV-l7-4Bf"/>
+                            <constraint firstItem="gLj-9J-IDA" firstAttribute="centerY" secondItem="tir-fE-F0Y" secondAttribute="centerY" constant="22" id="Soe-4p-hfl"/>
+                            <constraint firstItem="gLj-9J-IDA" firstAttribute="bottom" secondItem="tir-fE-F0Y" secondAttribute="bottom" id="yKK-pW-QM9"/>
+                            <constraint firstItem="gLj-9J-IDA" firstAttribute="leading" secondItem="tir-fE-F0Y" secondAttribute="leading" id="z5G-If-nAL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="gLj-9J-IDA" id="QgR-tz-3nY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y4X-2E-PVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1959.4202898550727" y="153.34821428571428"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ep4-dc-pHc">
             <objects>

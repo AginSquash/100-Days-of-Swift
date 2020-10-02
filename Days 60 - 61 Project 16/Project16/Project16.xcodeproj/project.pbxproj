@@ -14,6 +14,7 @@
 		CDB8DBF925273288002EF20A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB8DBF825273288002EF20A /* Assets.xcassets */; };
 		CDB8DBFC25273288002EF20A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB8DBFA25273288002EF20A /* LaunchScreen.storyboard */; };
 		CDB8DC0525273B17002EF20A /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8DC0425273B17002EF20A /* Capital.swift */; };
+		CDB8DC082527489D002EF20A /* WebVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8DC072527489D002EF20A /* WebVew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CDB8DBFB25273288002EF20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDB8DBFD25273288002EF20A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB8DC0425273B17002EF20A /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		CDB8DC072527489D002EF20A /* WebVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				CDB8DBF125273287002EF20A /* SceneDelegate.swift */,
 				CDB8DBF325273287002EF20A /* ViewController.swift */,
 				CDB8DBF525273287002EF20A /* Main.storyboard */,
+				CDB8DC072527489D002EF20A /* WebVew.swift */,
 				CDB8DC0425273B17002EF20A /* Capital.swift */,
 				CDB8DBF825273288002EF20A /* Assets.xcassets */,
 				CDB8DBFA25273288002EF20A /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 				CDB8DBF025273287002EF20A /* AppDelegate.swift in Sources */,
 				CDB8DC0525273B17002EF20A /* Capital.swift in Sources */,
 				CDB8DBF225273287002EF20A /* SceneDelegate.swift in Sources */,
+				CDB8DC082527489D002EF20A /* WebVew.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
