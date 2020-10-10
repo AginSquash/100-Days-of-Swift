@@ -14,6 +14,7 @@
 		CD06AA29252CA16C00AD20A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06AA28252CA16C00AD20A5 /* Assets.xcassets */; };
 		CD06AA2C252CA16C00AD20A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06AA2A252CA16C00AD20A5 /* LaunchScreen.storyboard */; };
 		CD1AEE8D25322A3500B84AF7 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = CD1AEE8C25322A3500B84AF7 /* Action.js */; };
+		CD1AEE9125323E1800B84AF7 /* scripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1AEE9025323E1800B84AF7 /* scripts.swift */; };
 		CDE9DDBE252DED7200DD6776 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE9DDBD252DED7200DD6776 /* Media.xcassets */; };
 		CDE9DDC0252DED7200DD6776 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE9DDBF252DED7200DD6776 /* ActionViewController.swift */; };
 		CDE9DDC3252DED7200DD6776 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE9DDC1252DED7200DD6776 /* MainInterface.storyboard */; };
@@ -54,6 +55,7 @@
 		CD06AA2B252CA16C00AD20A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD06AA2D252CA16C00AD20A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD1AEE8C25322A3500B84AF7 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
+		CD1AEE9025323E1800B84AF7 /* scripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scripts.swift; sourceTree = "<group>"; };
 		CDE9DDBB252DED7200DD6776 /* Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE9DDBD252DED7200DD6776 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CDE9DDBF252DED7200DD6776 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				CDE9DDBD252DED7200DD6776 /* Media.xcassets */,
 				CDE9DDBF252DED7200DD6776 /* ActionViewController.swift */,
+				CD1AEE9025323E1800B84AF7 /* scripts.swift */,
 				CDE9DDC1252DED7200DD6776 /* MainInterface.storyboard */,
 				CDE9DDC4252DED7200DD6776 /* Info.plist */,
 				CD1AEE8C25322A3500B84AF7 /* Action.js */,
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1AEE9125323E1800B84AF7 /* scripts.swift in Sources */,
 				CDE9DDC0252DED7200DD6776 /* ActionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
