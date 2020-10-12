@@ -14,6 +14,11 @@
 		CDACAEF12534897B00CA36FE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDACAEF02534897B00CA36FE /* GameViewController.swift */; };
 		CDACAEF42534897B00CA36FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDACAEF22534897B00CA36FE /* Main.storyboard */; };
 		CDACAEF62534897C00CA36FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDACAEF52534897C00CA36FE /* Assets.xcassets */; };
+		CDACAF04253492B200CA36FE /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACAEFF253492B200CA36FE /* spark.png */; };
+		CDACAF05253492B200CA36FE /* fuse.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDACAF00253492B200CA36FE /* fuse.sks */; };
+		CDACAF06253492B200CA36FE /* explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDACAF01253492B200CA36FE /* explode.sks */; };
+		CDACAF07253492B200CA36FE /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACAF02253492B200CA36FE /* background@2x.png */; };
+		CDACAF08253492B200CA36FE /* rocket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACAF03253492B200CA36FE /* rocket@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		CDACAEF32534897B00CA36FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDACAEF52534897C00CA36FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDACAEF72534897C00CA36FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDACAEFF253492B200CA36FE /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		CDACAF00253492B200CA36FE /* fuse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fuse.sks; sourceTree = "<group>"; };
+		CDACAF01253492B200CA36FE /* explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explode.sks; sourceTree = "<group>"; };
+		CDACAF02253492B200CA36FE /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		CDACAF03253492B200CA36FE /* rocket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +76,21 @@
 				CDACAEF22534897B00CA36FE /* Main.storyboard */,
 				CDACAEF52534897C00CA36FE /* Assets.xcassets */,
 				CDACAEF72534897C00CA36FE /* Info.plist */,
+				CDACAEFE253492B200CA36FE /* Content */,
 			);
 			path = Project20;
+			sourceTree = "<group>";
+		};
+		CDACAEFE253492B200CA36FE /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				CDACAEFF253492B200CA36FE /* spark.png */,
+				CDACAF00253492B200CA36FE /* fuse.sks */,
+				CDACAF01253492B200CA36FE /* explode.sks */,
+				CDACAF02253492B200CA36FE /* background@2x.png */,
+				CDACAF03253492B200CA36FE /* rocket@2x.png */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,9 +150,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDACAF04253492B200CA36FE /* spark.png in Resources */,
 				CDACAEF42534897B00CA36FE /* Main.storyboard in Resources */,
+				CDACAF06253492B200CA36FE /* explode.sks in Resources */,
+				CDACAF05253492B200CA36FE /* fuse.sks in Resources */,
 				CDACAEEB2534897B00CA36FE /* GameScene.sks in Resources */,
+				CDACAF08253492B200CA36FE /* rocket@2x.png in Resources */,
 				CDACAEF62534897C00CA36FE /* Assets.xcassets in Resources */,
+				CDACAF07253492B200CA36FE /* background@2x.png in Resources */,
 				CDACAEED2534897B00CA36FE /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladvrublevsky.Project20;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -311,7 +339,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladvrublevsky.Project20;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
