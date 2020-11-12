@@ -8,13 +8,64 @@
 import UIKit
 import MultipeerConnectivity
 
-class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate {
+class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate, MCNearbyServiceAdvertiserDelegate {
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("didReceive")
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        print("didStartReceivingResourceWithName \(resourceName)")
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        print("didFinishReceivingResourceWithName \(resourceName)")
+    }
+    
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case .connected:
+            print("Connected: \(peerID.displayName)")
+        case .connecting:
+            print("Connecting: \(peerID.displayName)")
+        case .notConnected:
+            print("Not connected: \(peerID.displayName)")
+            DispatchQueue.main.async { [weak self] in
+                let ac = UIAlertController(title: "\(peerID.displayName) disconnected", message: nil, preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self?.present(ac, animated: true, completion: nil)
+            }
+        @unknown default:
+            print("Unknown state received: \(peerID.displayName)")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        DispatchQueue.main.async { [weak self] in
+            if let image = UIImage(data: data) {
+                
+                //UIView.animate(withDuration: 1) {
+                self?.images.insert(image, at: 0)
+                self?.collectionView.reloadData()
+                
+            }
+        }
+    }
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
     var images = [UIImage]()
 
     var peerID = MCPeerID(displayName: UIDevice.current.name)
     var mcSession: MCSession?
-    var mcAdvertiserAssistant: MCAdvertiserAssistant?
+    var mcAdvertiserAssistant: MCNearbyServiceAdvertiser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +106,21 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         self.images.insert(image, at: 0)
         collectionView.reloadData()
+        
+        guard  let mcSession = mcSession else { return }
+        
+        if mcSession.connectedPeers.count > 0 {
+            if let imageData = image.pngData() {
+                
+                do {
+                    try mcSession.send(imageData, toPeers: mcSession.connectedPeers, with: .reliable)
+                } catch {
+                    let ac = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    present(ac, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc func showConnectionPrompt() {
@@ -67,8 +133,9 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     
     func startHosting(action: UIAlertAction) {
         guard let mcSession = mcSession else { return }
-        mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: "hws-project25", discoveryInfo: nil, session: mcSession)
-        mcAdvertiserAssistant?.start()
+        mcAdvertiserAssistant = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: "hws-project25")
+        mcAdvertiserAssistant?.delegate = self
+        mcAdvertiserAssistant?.startAdvertisingPeer()
     }
     
     func joinSession(action: UIAlertAction) {
@@ -77,6 +144,11 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         mcBrowser.delegate = self
         present(mcBrowser, animated: true, completion: nil)
     }
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        invitationHandler(true, mcSession)
+    }
+
 
 }
 
