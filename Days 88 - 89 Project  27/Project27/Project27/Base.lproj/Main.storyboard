@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project27" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euK-gh-D0S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ea-8A-7m9">
+                                <rect key="frame" x="164" y="820" width="86" height="32"/>
+                                <state key="normal" title="Redrow"/>
+                                <connections>
+                                    <action selector="redrawTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kfu-7C-IRH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8Ea-8A-7m9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="776" id="1T5-5G-YhC"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="72y-xh-hjW"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DfG-Rk-eEM"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PPt-ym-1NG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Ea-8A-7m9" secondAttribute="bottom" constant="10" id="YnF-6P-t52"/>
+                            <constraint firstItem="8Ea-8A-7m9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="d0Y-Uh-men"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="centerX" secondItem="8Ea-8A-7m9" secondAttribute="centerX" id="e1N-i5-dj6"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="bottom" secondItem="8Ea-8A-7m9" secondAttribute="bottom" id="hnf-L7-7JX"/>
+                            <constraint firstItem="euK-gh-D0S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qPl-AO-V47"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="euK-gh-D0S" id="vSl-52-phd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
