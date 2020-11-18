@@ -69,7 +69,8 @@ class ViewController: UIViewController {
     func unlockSecretMessage() {
         secret.isHidden = false
         title = "Secret stuff!"
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveSecretMessage))
+        
         secret.text = KeychainWrapper.standard.string(forKey: "SecretMessage") ?? ""
     }
     
@@ -80,6 +81,7 @@ class ViewController: UIViewController {
         secret.resignFirstResponder()
         secret.isHidden = true
         title = "Nothing to see here"
+        navigationItem.leftBarButtonItem = nil
     }
 }
 
