@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD10393C25A8E159007D8820 /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD10393A25A8E159007D8820 /* hitPlayer.sks */; };
+		CD10393D25A8E159007D8820 /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD10393B25A8E159007D8820 /* hitBuilding.sks */; };
 		CDBC088325A7C45F00C6BEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC088225A7C45F00C6BEA2 /* AppDelegate.swift */; };
 		CDBC088525A7C45F00C6BEA2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDBC088425A7C45F00C6BEA2 /* GameScene.sks */; };
 		CDBC088725A7C45F00C6BEA2 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDBC088625A7C45F00C6BEA2 /* Actions.sks */; };
@@ -16,6 +18,7 @@
 		CDBC089025A7C46000C6BEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBC088F25A7C46000C6BEA2 /* Assets.xcassets */; };
 		CDBC089B25A7C46000C6BEA2 /* Project29Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC089A25A7C46000C6BEA2 /* Project29Tests.swift */; };
 		CDBC08A625A7C46000C6BEA2 /* Project29UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC08A525A7C46000C6BEA2 /* Project29UITests.swift */; };
+		CDBC08BD25A7C5F900C6BEA2 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC08BC25A7C5F900C6BEA2 /* BuildingNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD10393A25A8E159007D8820 /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
+		CD10393B25A8E159007D8820 /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
 		CDBC087F25A7C45F00C6BEA2 /* Project29.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project29.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBC088225A7C45F00C6BEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBC088425A7C45F00C6BEA2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		CDBC08A125A7C46000C6BEA2 /* Project29UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Project29UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBC08A525A7C46000C6BEA2 /* Project29UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project29UITests.swift; sourceTree = "<group>"; };
 		CDBC08A725A7C46000C6BEA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDBC08BC25A7C5F900C6BEA2 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +112,12 @@
 				CDBC088625A7C45F00C6BEA2 /* Actions.sks */,
 				CDBC088825A7C45F00C6BEA2 /* GameScene.swift */,
 				CDBC088A25A7C45F00C6BEA2 /* GameViewController.swift */,
+				CDBC08BC25A7C5F900C6BEA2 /* BuildingNode.swift */,
 				CDBC088C25A7C45F00C6BEA2 /* Main.storyboard */,
 				CDBC088F25A7C46000C6BEA2 /* Assets.xcassets */,
 				CDBC089125A7C46000C6BEA2 /* Info.plist */,
+				CD10393B25A8E159007D8820 /* hitBuilding.sks */,
+				CD10393A25A8E159007D8820 /* hitPlayer.sks */,
 			);
 			path = Project29;
 			sourceTree = "<group>";
@@ -236,8 +245,10 @@
 			files = (
 				CDBC088E25A7C45F00C6BEA2 /* Main.storyboard in Resources */,
 				CDBC088525A7C45F00C6BEA2 /* GameScene.sks in Resources */,
+				CD10393C25A8E159007D8820 /* hitPlayer.sks in Resources */,
 				CDBC089025A7C46000C6BEA2 /* Assets.xcassets in Resources */,
 				CDBC088725A7C45F00C6BEA2 /* Actions.sks in Resources */,
+				CD10393D25A8E159007D8820 /* hitBuilding.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDBC088925A7C45F00C6BEA2 /* GameScene.swift in Sources */,
+				CDBC08BD25A7C5F900C6BEA2 /* BuildingNode.swift in Sources */,
 				CDBC088B25A7C45F00C6BEA2 /* GameViewController.swift in Sources */,
 				CDBC088325A7C45F00C6BEA2 /* AppDelegate.swift in Sources */,
 			);
