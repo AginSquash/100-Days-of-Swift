@@ -11,7 +11,6 @@ class ViewController: UICollectionViewController {
     var pairs: [Pair] = Pair.getExample()
     var used_pairs: [Pair] = []
     
-    
     var pairschain: [String] = []
     var currentlySelectedItem: Int?
     
@@ -53,12 +52,10 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("user selected: \(indexPath.item)")
         let index = indexPath.item
         
         if currentlySelectedItem == nil {
             currentlySelectedItem = index
-            print(pairschain[index])
             // animate here
             return
         }
@@ -69,7 +66,6 @@ class ViewController: UICollectionViewController {
         } else {
             print("No!")
         }
-        print(pairschain[index])
         currentlySelectedItem = nil
     }
 

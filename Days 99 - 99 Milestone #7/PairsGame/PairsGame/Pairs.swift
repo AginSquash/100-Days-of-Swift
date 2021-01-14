@@ -14,8 +14,7 @@ struct Pair: Codable {
     
     static func getExample() -> [Pair] {
         let pairs = [ Pair(capital: "Moscow", country: "Russia"), Pair(capital: "London", country: "Britan"), Pair(capital: "Minsk", country: "Belarus"),
-                      Pair(capital: "Paris", country: "France") /*, Pair(capital: "London", country: "Britan"), Pair(capital: "Minsk", country: "Belarus")
-                      Pair(capital: "Moscow", country: "Russia"), Pair(capital: "London", country: "Britan"), Pair(capital: "Minsk", country: "Belarus") */
+                      Pair(capital: "Paris", country: "France"), Pair(capital: "Stockholm", country: "Sweden"), Pair(capital: "Warsaw", country: "Poland")
         ]
         return pairs
     }
