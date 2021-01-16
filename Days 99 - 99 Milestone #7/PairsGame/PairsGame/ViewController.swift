@@ -12,12 +12,12 @@ class ViewController: UICollectionViewController {
     var used_pairs: [Pair] = []
     
     var pairschain: [String] = []
-    var currentlySelectedItem: Int?
+    var currentlySelectedCard: Int?
     
     var backCardViews: [UIView?] = []
     var faceCardViews: [UIView?] = []
     
-    var index: Int = 0
+    //var currentlySelectedIndex: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,36 +84,39 @@ class ViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item
         
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCellView
-        
-        self.flip(index: index)
-        
-        if currentlySelectedItem == nil {
-            currentlySelectedItem = index
-            // animate here
-            
-            /*
-            let seceondView = UIView()  // UIView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
-            seceondView.backgroundColor = UIColor.red
-            secondView.isHidden = true
-            */
-            //flip(firstView: self.firstView, secondView: self.secondView)
+        /// showing first card
+        guard let currentlySelectedCard = currentlySelectedCard else {
+            self.currentlySelectedCard = index
+            flipToFace(index: index)
             return
         }
         
+        /// if selected same card - just flip this
+        if currentlySelectedCard == index {
+            flipToBack(index: index)
+            self.currentlySelectedCard = nil
+            return
+        }
         
-        if pairschain[indexPath.item] == pairschain[currentlySelectedItem!] {
+        /// showing second card
+        flipToFace(index: index)
+        
+        if pairschain[indexPath.item] == pairschain[currentlySelectedCard] {
             print("You're right!")
         } else {
             print("No!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.flipToBack(index: currentlySelectedCard)
+                self.flipToBack(index: index)
+            }
         }
-        currentlySelectedItem = nil
+        self.currentlySelectedCard = nil
         
         
     }
 
     
-    @objc func flip (index: Int) {
+    @objc func flipToFace(index: Int) {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
 
         UIView.transition(from: self.backCardViews[index]!, to: self.faceCardViews[index]!, duration: 1.0, options: transitionOptions, completion: nil)
@@ -138,6 +141,12 @@ class ViewController: UICollectionViewController {
             }
         } */
         
+    }
+    
+    func flipToBack(index: Int) {
+        let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
+
+        UIView.transition(from: self.faceCardViews[index]!, to: self.backCardViews[index]!, duration: 1.0, options: transitionOptions, completion: nil)
     }
 }
 
