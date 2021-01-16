@@ -12,7 +12,6 @@
         <!--Navigation Controller-->
         <scene sceneID="YDE-PA-8sP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hZJ-aH-PgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8qt-Eh-r2j" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZPq-LF-bUg">
@@ -24,6 +23,7 @@
                         <segue destination="I6d-44-DTD" kind="relationship" relationship="rootViewController" id="4NC-U0-VvM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZJ-aH-PgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
@@ -48,25 +48,8 @@
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="C0p-wB-Pzr">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTs-je-W6A">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="kTs-je-W6A" firstAttribute="width" secondItem="C0p-wB-Pzr" secondAttribute="width" id="4aF-it-Xwb"/>
-                                        <constraint firstItem="kTs-je-W6A" firstAttribute="height" secondItem="C0p-wB-Pzr" secondAttribute="height" id="YYl-bY-gp7"/>
-                                        <constraint firstItem="kTs-je-W6A" firstAttribute="centerY" secondItem="C0p-wB-Pzr" secondAttribute="centerY" id="lDh-5Z-AiM"/>
-                                        <constraint firstItem="kTs-je-W6A" firstAttribute="centerX" secondItem="C0p-wB-Pzr" secondAttribute="centerX" id="tRt-ov-e1k"/>
-                                    </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="120" height="120"/>
-                                <connections>
-                                    <outlet property="label" destination="kTs-je-W6A" id="IGS-Q1-Uxs"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
