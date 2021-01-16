@@ -13,6 +13,7 @@ class ViewController: UICollectionViewController {
     
     var pairschain: [String] = []
     var currentlySelectedCard: Int?
+    var answeredCards: [Int] = []
     
     var backCardViews: [UIView?] = []
     var faceCardViews: [UIView?] = []
@@ -84,6 +85,9 @@ class ViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item
         
+        /// check if we already solve this card
+        guard !answeredCards.contains(index) else { return }
+        
         /// showing first card
         guard let currentlySelectedCard = currentlySelectedCard else {
             self.currentlySelectedCard = index
@@ -103,6 +107,20 @@ class ViewController: UICollectionViewController {
         
         if pairschain[indexPath.item] == pairschain[currentlySelectedCard] {
             print("You're right!")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.answeredCards.append(currentlySelectedCard)
+                self.answeredCards.append(index)
+                
+                let transitionOptions: UIView.AnimationOptions = [.allowAnimatedContent, .transitionFlipFromTop]
+                UIView.transition(with: self.faceCardViews[currentlySelectedCard]!, duration: 1.0, options: transitionOptions) {
+                    self.faceCardViews[currentlySelectedCard]!.alpha = 0
+                }
+                UIView.transition(with: self.faceCardViews[index]!, duration: 1.0, options: transitionOptions) {
+                    self.faceCardViews[index]!.alpha = 0
+                }
+            }
+            
         } else {
             print("No!")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
