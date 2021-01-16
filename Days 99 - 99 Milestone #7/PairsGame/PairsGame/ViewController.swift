@@ -25,6 +25,8 @@ class ViewController: UICollectionViewController {
         
         pairs.shuffle()
         used_pairs = pairs
+        
+        title = "PairsGame"
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
