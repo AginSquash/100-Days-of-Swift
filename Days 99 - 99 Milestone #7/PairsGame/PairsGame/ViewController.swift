@@ -107,10 +107,10 @@ class ViewController: UICollectionViewController {
         
         if pairschain[indexPath.item] == pairschain[currentlySelectedCard] {
             print("You're right!")
+            self.answeredCards.append(currentlySelectedCard)
+            self.answeredCards.append(index)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.answeredCards.append(currentlySelectedCard)
-                self.answeredCards.append(index)
                 
                 let transitionOptions: UIView.AnimationOptions = [.allowAnimatedContent, .transitionFlipFromTop]
                 UIView.transition(with: self.faceCardViews[currentlySelectedCard]!, duration: 1.0, options: transitionOptions) {
@@ -121,6 +121,8 @@ class ViewController: UICollectionViewController {
                 }
             }
             
+            checkEndGame()
+            
         } else {
             print("No!")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -129,36 +131,20 @@ class ViewController: UICollectionViewController {
             }
         }
         self.currentlySelectedCard = nil
-        
-        
     }
-
     
-    @objc func flipToFace(index: Int) {
+    func checkEndGame() {
+        if answeredCards.count == pairs.count * 2 {
+            let ac = UIAlertController(title: "You won!", message: "You found all the matches", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+        }
+    }
+    
+    func flipToFace(index: Int) {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
 
         UIView.transition(from: self.backCardViews[index]!, to: self.faceCardViews[index]!, duration: 1.0, options: transitionOptions, completion: nil)
-        
-       /* UIView.transition(with: self.backCardViews[self.index]!, duration: 1.0, options: transitionOptions, animations: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.backCardViews[self.index]!.isHidden = true
-            }
-        }) */
-
-        /*
-         
-        UIView.transition(with: self.faceCardViews[self.index]!, duration: 1.0, options: transitionOptions, animations: {
-            self.faceCardViews[self.index]!.isHidden = false
-        })
-         */
-        
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-            UIView.animate(withDuration: 1.0) {
-                self.backCardViews[self.index]!.isHidden = true
-            }
-        } */
-        
     }
     
     func flipToBack(index: Int) {
