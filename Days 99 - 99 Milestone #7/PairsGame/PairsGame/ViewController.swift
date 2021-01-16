@@ -17,14 +17,13 @@ class ViewController: UICollectionViewController {
     var backCardViews: [UIView?] = []
     var faceCardViews: [UIView?] = []
     
+    var index: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         pairs.shuffle()
         used_pairs = pairs
-    
-        //faceCardView = UIView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
-
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -43,7 +42,8 @@ class ViewController: UICollectionViewController {
         }
         used_pairs.removeAll(where: { $0.capital == pair.capital })
         
-        let labelView = UILabel(frame: CGRect(x: 25, y: 0, width: 120, height: 120))
+        let labelView = UILabel(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+        labelView.textAlignment = .center
         
         if pair.status == 0 {
             // cell.label.text = pair.capital
@@ -57,8 +57,9 @@ class ViewController: UICollectionViewController {
         }
         pair.status += 1
         
-        cell.addSubview(labelView)
+        labelView.isHidden = true
         faceCardViews.insert(labelView, at: indexPath.item)
+        
         
         if pair.status != 2 {
             used_pairs.append(pair)
@@ -66,12 +67,17 @@ class ViewController: UICollectionViewController {
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         imageView.image = UIImage(named: "card")
+        imageView.backgroundColor = UIColor.gray
+        
         backCardViews.insert(imageView, at: indexPath.item)
         
         //faceCardView.addSubview(imageView)
         //cell.addSubview(faceCardView)
         
         cell.addSubview(imageView)
+        
+        cell.addSubview(labelView)
+        
         return cell
     }
     
@@ -80,22 +86,7 @@ class ViewController: UICollectionViewController {
         
         let cell = collectionView.cellForItem(at: indexPath) as! CardCellView
         
-        
-        //firstView = UIView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))
-       // secondView = UIView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))
-
-        //firstView.backgroundColor = UIColor.red
-        //secondView.backgroundColor = UIColor.blue
-        
-        //secondView.isHidden = true
-        
-       // cell.addSubview(firstView)
-        //cell.addSubview(secondView)
-        
-        UIView.animate(withDuration: 1) {
-        //    self.flip(index: index)
-        }
-        perform(#selector(flip), with: [index], afterDelay: 0)
+        self.flip(index: index)
         
         if currentlySelectedItem == nil {
             currentlySelectedItem = index
@@ -125,13 +116,28 @@ class ViewController: UICollectionViewController {
     @objc func flip (index: Int) {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
 
-        UIView.transition(with: self.backCardViews[index]!, duration: 1.0, options: transitionOptions, animations: {
-            self.backCardViews[index]!.isHidden = true
-        })
+        UIView.transition(from: self.backCardViews[index]!, to: self.faceCardViews[index]!, duration: 1.0, options: transitionOptions, completion: nil)
+        
+       /* UIView.transition(with: self.backCardViews[self.index]!, duration: 1.0, options: transitionOptions, animations: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.backCardViews[self.index]!.isHidden = true
+            }
+        }) */
 
-        UIView.transition(with: self.faceCardViews[index]!, duration: 1.0, options: transitionOptions, animations: {
-            self.faceCardViews[index]!.isHidden = false
+        /*
+         
+        UIView.transition(with: self.faceCardViews[self.index]!, duration: 1.0, options: transitionOptions, animations: {
+            self.faceCardViews[self.index]!.isHidden = false
         })
+         */
+        
+        /*
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            UIView.animate(withDuration: 1.0) {
+                self.backCardViews[self.index]!.isHidden = true
+            }
+        } */
+        
     }
 }
 
