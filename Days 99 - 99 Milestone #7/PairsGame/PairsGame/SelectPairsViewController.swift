@@ -11,6 +11,7 @@ import LocalAuthentication
 class SelectPairsViewController: UITableViewController {
 
     var isUnlocked: Bool = false
+    var onCompletion: (([Pair])->Void)? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class SelectPairsViewController: UITableViewController {
                 
                 DispatchQueue.main.async {
                     if success {
-                        self?.unlock() // replace with func
+                        self?.unlock()
                         print("auth succefull")
                     } else {
                         let ac = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .alert)
@@ -56,6 +57,14 @@ class SelectPairsViewController: UITableViewController {
         isUnlocked = true
         title = "Unlocked"
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        print("Save here!")
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

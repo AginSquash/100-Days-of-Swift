@@ -8,7 +8,11 @@
 import UIKit
 
 class ViewController: UICollectionViewController {
-    var pairs: [Pair] = Pair.getExample()
+    var pairs: [Pair] = [] {
+        didSet {
+            self.used_pairs = pairs
+        }
+    }
     var used_pairs: [Pair] = []
     
     var pairschain: [String] = []
@@ -18,26 +22,54 @@ class ViewController: UICollectionViewController {
     var backCardViews: [UIView?] = []
     var faceCardViews: [UIView?] = []
     
-    //var currentlySelectedIndex: Int? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pairs.shuffle()
-        used_pairs = pairs
+        //used_pairs = pairs
         
         title = "PairsGame"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushToSelectPairsView))
+        
+        let pathToFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Pairs")
+        if let loaded = try? Data(contentsOf: pathToFile) {
+            print("file not nil")
+            if let decoded = try? JSONDecoder().decode([Pair].self, from: loaded) {
+                if decoded.count != 0 {
+                    print("setup: \(decoded)")
+                    self.pairs = decoded.shuffled()
+                    //self.used_pairs = decoded
+                    self.collectionView.reloadData()
+                    return
+                }
+            }
+        } else {
+            let pairs = Pair.getExample().shuffled()
+            self.pairs = pairs
+            self.collectionView.reloadData()
+            if let encoded = try? JSONEncoder().encode(pairs) {
+                try? encoded.write(to: pathToFile)
+                print("Saved")
+            }
+        }
+            
+        
+        
     }
     
     @objc func pushToSelectPairsView() {
-        guard let selectViewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectPairsViewController") else {
+        guard let selectViewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectPairsViewController") as? SelectPairsViewController else {
             fatalError("Cannot find SelectPairsViewController")
         }
+        selectViewController.onCompletion = updatePairs
         self.navigationController?.pushViewController(selectViewController, animated: true)
     }
 
+    func updatePairs(_ pairs: [Pair]) -> Void {
+        
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = pairs.count * 2
         pairschain = repeatElement("0", count: count).map( { String($0) })
