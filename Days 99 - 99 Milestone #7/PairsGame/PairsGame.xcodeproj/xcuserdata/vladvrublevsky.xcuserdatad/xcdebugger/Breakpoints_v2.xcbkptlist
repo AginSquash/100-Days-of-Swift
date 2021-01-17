@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F74386A5-F667-4D39-9794-375EA5679F94"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "772C4D5A-622F-4E8B-BAEF-1C8052FF3390"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PairsGame/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "updatePairs(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "772C4D5A-622F-4E8B-BAEF-1C8052FF3390 - acf0523e46d2070a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PairsGame.ViewController.collectionView(_: __C.UICollectionView, numberOfItemsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "PairsGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladvrublevsky/Documents/Projects/100-Days-of-Swift/Days%2099%20-%2099%20Milestone%20%237/PairsGame/PairsGame/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "772C4D5A-622F-4E8B-BAEF-1C8052FF3390 - 5f816861ac786085"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; Swift.String in PairsGame.ViewController.collectionView(_: __C.UICollectionView, numberOfItemsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "PairsGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladvrublevsky/Documents/Projects/100-Days-of-Swift/Days%2099%20-%2099%20Milestone%20%237/PairsGame/PairsGame/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

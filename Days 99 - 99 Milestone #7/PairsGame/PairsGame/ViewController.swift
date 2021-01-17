@@ -29,6 +29,8 @@ class ViewController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushToSelectPairsView))
         
+        collectionView.bounces = false // need fix for big count
+        
         let pathToFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Pairs")
         if let loaded = try? Data(contentsOf: pathToFile) {
             if let decoded = try? JSONDecoder().decode([Pair].self, from: loaded) {
@@ -62,8 +64,28 @@ class ViewController: UICollectionViewController {
     }
 
     func updatePairs(_ pairs: [Pair]) -> Void {
-        self.pairs = pairs.shuffled()
+        
+        self.pairs.removeAll()
         self.collectionView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.pairschain = []
+            self.answeredCards = []
+            
+            for view in self.backCardViews {
+                view?.removeFromSuperview()
+            }
+            for view in self.faceCardViews {
+                view?.removeFromSuperview()
+            }
+            
+            self.backCardViews = []
+            self.faceCardViews = []
+            self.currentlySelectedCard = nil
+            
+            self.pairs = pairs.shuffled()
+            self.collectionView.reloadData()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -77,8 +99,14 @@ class ViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as! CardCellView
         
+        if cell.subviews.count > 0 {
+            for view in cell.subviews {
+                view.removeFromSuperview()
+            }
+        }
+        
         guard var pair = used_pairs.randomElement() else {
-            fatalError("random dropped nil")
+            fatalError("random dropped nil; indexpath: \(indexPath)")
         }
         used_pairs.removeAll(where: { $0.capital == pair.capital })
         
@@ -110,9 +138,6 @@ class ViewController: UICollectionViewController {
         imageView.backgroundColor = UIColor.gray
         
         backCardViews.insert(imageView, at: indexPath.item)
-        
-        //faceCardView.addSubview(imageView)
-        //cell.addSubview(faceCardView)
         
         cell.addSubview(imageView)
         
