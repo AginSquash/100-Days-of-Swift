@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pair: Codable {
+struct Pair: Codable, Equatable {
     var status: Int16 = 0
     let capital: String
     let country: String
@@ -17,5 +17,9 @@ struct Pair: Codable {
                       Pair(capital: "Paris", country: "France"), Pair(capital: "Stockholm", country: "Sweden"), Pair(capital: "Warsaw", country: "Poland")
         ]
         return pairs
+    }
+    
+    static func == (_ lhs: Pair, _ rhs: Pair) -> Bool {
+        return (lhs.capital == rhs.capital)&&(lhs.country == rhs.country)
     }
 }

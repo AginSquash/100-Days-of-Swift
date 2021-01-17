@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD6B4C3025B4DC090059612B /* SelectPairsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6B4C2F25B4DC090059612B /* SelectPairsCell.swift */; };
 		CD8BED1C25B4C771002044F0 /* SelectPairsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BED1B25B4C771002044F0 /* SelectPairsViewController.swift */; };
 		CDB6C45925B0C295005E31DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB6C45825B0C295005E31DA /* AppDelegate.swift */; };
 		CDB6C45B25B0C295005E31DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB6C45A25B0C295005E31DA /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD6B4C2F25B4DC090059612B /* SelectPairsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPairsCell.swift; sourceTree = "<group>"; };
 		CD8BED1B25B4C771002044F0 /* SelectPairsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPairsViewController.swift; sourceTree = "<group>"; };
 		CDB6C45525B0C295005E31DA /* PairsGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PairsGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB6C45825B0C295005E31DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				CDB6C45C25B0C295005E31DA /* ViewController.swift */,
 				CDB6C45E25B0C295005E31DA /* Main.storyboard */,
 				CD8BED1B25B4C771002044F0 /* SelectPairsViewController.swift */,
+				CD6B4C2F25B4DC090059612B /* SelectPairsCell.swift */,
 				CDB6C47B25B0CC94005E31DA /* Pairs.swift */,
 				CDB6C47125B0C59D005E31DA /* CollectionView.swift */,
 				CDB6C46E25B0C4FC005E31DA /* CardCellView.swift */,
@@ -156,6 +159,7 @@
 				CDB6C46F25B0C4FC005E31DA /* CardCellView.swift in Sources */,
 				CDB6C45B25B0C295005E31DA /* SceneDelegate.swift in Sources */,
 				CD8BED1C25B4C771002044F0 /* SelectPairsViewController.swift in Sources */,
+				CD6B4C3025B4DC090059612B /* SelectPairsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

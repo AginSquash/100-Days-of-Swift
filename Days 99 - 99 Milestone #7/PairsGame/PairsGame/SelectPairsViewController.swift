@@ -11,7 +11,10 @@ import LocalAuthentication
 class SelectPairsViewController: UITableViewController {
 
     var isUnlocked: Bool = false
+    var secureAlreadyExistPairs: [Pair] = []
     var onCompletion: (([Pair])->Void)? = nil
+    
+    private var unlockedExistPairs: [Pair] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class SelectPairsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         title = "Locked!"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPair))
         
         auth()
     }
@@ -53,15 +57,58 @@ class SelectPairsViewController: UITableViewController {
         }
     }
 
-    func unlock() {
+    private func unlock() {
         isUnlocked = true
         title = "Unlocked"
+        unlockedExistPairs = secureAlreadyExistPairs
+        tableView.reloadData()
+    }
+    
+    @objc func addNewPair() {
+        guard isUnlocked else {
+            let ac = UIAlertController(title: "Error", message: "Authorize first", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
+        }
+        
+        let ac = UIAlertController(title: "Enter new pair", message: nil, preferredStyle: .alert)
+        ac.addTextField(configurationHandler: nil)
+        ac.addTextField(configurationHandler: nil)
+        
+        let AddButton = UIAlertAction(title: "Add", style: .default) { [weak self, weak ac] _ in
+            guard let element0 = ac?.textFields?[0].text else { return }
+            guard let element1 = ac?.textFields?[1].text else { return }
+            
+            guard !element0.isEmpty else { print("Field 0 empety"); return }
+            guard !element1.isEmpty else { print("Field 1 empety"); return }
+            
+            let newPair = Pair(capital: element0, country: element1)
+            self?.unlockedExistPairs.append(newPair)
+            self?.tableView.reloadData()
+        }
+        
+        ac.addAction(AddButton)
+        present(ac, animated: true, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         print("Save here!")
+        
+        if self.unlockedExistPairs == self.secureAlreadyExistPairs {
+            print("No changes here")
+            return
+        }
+        
+        (self.onCompletion ?? { _ in })(self.unlockedExistPairs)
+        
+        if let encoded = try? JSONEncoder().encode(self.unlockedExistPairs) {
+            let pathToFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Pairs")
+            try? encoded.write(to: pathToFile)
+        }
+        
     }
     
     
@@ -69,23 +116,26 @@ class SelectPairsViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return unlockedExistPairs.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectPairsCell", for: indexPath) as? SelectPairsCell else {
+            fatalError("Cannot load SelectPairsCell")
+        }
 
-        // Configure the cell...
-
+        cell.element1.text = unlockedExistPairs[indexPath.item].capital
+        cell.element2.text = unlockedExistPairs[indexPath.item].country
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
