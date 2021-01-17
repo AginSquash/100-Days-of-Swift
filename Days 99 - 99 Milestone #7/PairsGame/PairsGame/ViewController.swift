@@ -27,6 +27,15 @@ class ViewController: UICollectionViewController {
         used_pairs = pairs
         
         title = "PairsGame"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushToSelectPairsView))
+    }
+    
+    @objc func pushToSelectPairsView() {
+        guard let selectViewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectPairsViewController") else {
+            fatalError("Cannot find SelectPairsViewController")
+        }
+        self.navigationController?.pushViewController(selectViewController, animated: true)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
