@@ -12,6 +12,16 @@ struct Pair: Codable, Equatable {
     let element1: String
     let element2: String
     
+    init(element1: String, element2: String) {
+        if element1 > element2 {
+            self.element2 = element1
+            self.element1 = element2
+        } else {
+            self.element1 = element1
+            self.element2 = element2
+        }
+    }
+    
     static func getExample() -> [Pair] {
         let pairs = [ Pair(element1: "Moscow", element2: "Russia"), Pair(element1: "London", element2: "Britan"), Pair(element1: "Minsk", element2: "Belarus"),
                       Pair(element1: "Paris", element2: "France"), Pair(element1: "Stockholm", element2: "Sweden"), Pair(element1: "Warsaw", element2: "Poland")

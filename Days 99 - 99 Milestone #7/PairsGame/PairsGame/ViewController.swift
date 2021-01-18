@@ -11,8 +11,20 @@ class ViewController: UICollectionViewController {
     var pairs: [Pair] = [] {
         didSet {
             self.used_pairs = pairs
+            
+            var pairString: [String] = []
+            for pair in pairs {
+                pairString.append(pair.element1)
+                pairString.append(pair.element2)
+            }
+            self.mixedPairString = pairString.shuffled()
+            
+            self.collectionView.reloadData()
         }
     }
+    
+    var mixedPairString: [String] = []
+    
     var used_pairs: [Pair] = []
     
     var pairschain: [String] = []
@@ -65,27 +77,27 @@ class ViewController: UICollectionViewController {
 
     func updatePairs(_ pairs: [Pair]) -> Void {
         
-        self.pairs.removeAll()
-        self.collectionView.reloadData()
+        //self.pairs.removeAll()
+        //self.collectionView.reloadData()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.pairschain = []
-            self.answeredCards = []
-            
-            for view in self.backCardViews {
-                view?.removeFromSuperview()
-            }
-            for view in self.faceCardViews {
-                view?.removeFromSuperview()
-            }
-            
-            self.backCardViews = []
-            self.faceCardViews = []
-            self.currentlySelectedCard = nil
-            
-            self.pairs = pairs.shuffled()
-            self.collectionView.reloadData()
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        self.pairschain = []
+        self.answeredCards = []
+        
+        for view in self.backCardViews {
+            view?.removeFromSuperview()
         }
+        for view in self.faceCardViews {
+            view?.removeFromSuperview()
+        }
+        
+        self.backCardViews = []
+        self.faceCardViews = []
+        self.currentlySelectedCard = nil
+        
+        self.pairs = pairs.shuffled()
+        //self.collectionView.reloadData()
+        //}
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,15 +116,17 @@ class ViewController: UICollectionViewController {
                 view.removeFromSuperview()
             }
         }
-        
+        /*
         guard var pair = used_pairs.randomElement() else {
             fatalError("random dropped nil; indexpath: \(indexPath)")
         }
         used_pairs.removeAll(where: { $0.element1 == pair.element1 })
+        */
         
         let labelView = UILabel(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         labelView.textAlignment = .center
         
+        /*
         if pair.status == 0 {
             // cell.label.text = pair.capital
             labelView.text = pair.element1
@@ -124,14 +138,16 @@ class ViewController: UICollectionViewController {
             pairschain[indexPath.item] = pair.element1
         }
         pair.status += 1
+        */
         
+        labelView.text = self.mixedPairString[indexPath.item]
         labelView.isHidden = true
         faceCardViews.insert(labelView, at: indexPath.item)
         
-        
+        /*
         if pair.status != 2 {
             used_pairs.append(pair)
-        }
+        }*/
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         imageView.image = UIImage(named: "card")
@@ -169,7 +185,9 @@ class ViewController: UICollectionViewController {
         /// showing second card
         flipToFace(index: index)
         
-        if pairschain[indexPath.item] == pairschain[currentlySelectedCard] {
+        let createdPair = Pair(element1: mixedPairString[index], element2: mixedPairString[currentlySelectedCard])
+        
+        if self.pairs.contains(createdPair) {
             print("You're right!")
             self.answeredCards.append(currentlySelectedCard)
             self.answeredCards.append(index)
