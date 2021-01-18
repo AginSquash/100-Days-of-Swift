@@ -83,7 +83,7 @@ class SelectPairsViewController: UITableViewController {
             guard !element0.isEmpty else { print("Field 0 empety"); return }
             guard !element1.isEmpty else { print("Field 1 empety"); return }
             
-            let newPair = Pair(capital: element0, country: element1)
+            let newPair = Pair(element1: element0, element2: element1)
             self?.unlockedExistPairs.append(newPair)
             self?.tableView.reloadData()
         }
@@ -130,8 +130,8 @@ class SelectPairsViewController: UITableViewController {
             fatalError("Cannot load SelectPairsCell")
         }
 
-        cell.element1.text = unlockedExistPairs[indexPath.item].capital
-        cell.element2.text = unlockedExistPairs[indexPath.item].country
+        cell.element1.text = unlockedExistPairs[indexPath.item].element1
+        cell.element2.text = unlockedExistPairs[indexPath.item].element2
         
         return cell
     }

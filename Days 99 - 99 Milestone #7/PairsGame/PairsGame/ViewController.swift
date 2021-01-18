@@ -108,20 +108,20 @@ class ViewController: UICollectionViewController {
         guard var pair = used_pairs.randomElement() else {
             fatalError("random dropped nil; indexpath: \(indexPath)")
         }
-        used_pairs.removeAll(where: { $0.capital == pair.capital })
+        used_pairs.removeAll(where: { $0.element1 == pair.element1 })
         
         let labelView = UILabel(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         labelView.textAlignment = .center
         
         if pair.status == 0 {
             // cell.label.text = pair.capital
-            labelView.text = pair.capital
+            labelView.text = pair.element1
             // we need save same value to check correct
-            pairschain[indexPath.item] = pair.capital //country
+            pairschain[indexPath.item] = pair.element1 //country
         } else {
-            labelView.text = pair.country
+            labelView.text = pair.element2
             //cell.label.text = pair.country
-            pairschain[indexPath.item] = pair.capital
+            pairschain[indexPath.item] = pair.element1
         }
         pair.status += 1
         
