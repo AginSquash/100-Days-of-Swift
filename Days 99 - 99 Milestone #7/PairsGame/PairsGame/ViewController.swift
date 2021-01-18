@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UICollectionViewController {
     var pairs: [Pair] = [] {
         didSet {
-            self.used_pairs = pairs
             
             var pairString: [String] = []
             for pair in pairs {
@@ -24,8 +23,6 @@ class ViewController: UICollectionViewController {
     }
     
     var mixedPairString: [String] = []
-    
-    var used_pairs: [Pair] = []
     
     var pairschain: [String] = []
     var currentlySelectedCard: Int?
@@ -95,9 +92,7 @@ class ViewController: UICollectionViewController {
         self.faceCardViews = []
         self.currentlySelectedCard = nil
         
-        self.pairs = pairs.shuffled()
-        //self.collectionView.reloadData()
-        //}
+        self.pairs = pairs
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -218,7 +213,10 @@ class ViewController: UICollectionViewController {
     func checkEndGame() {
         if answeredCards.count == pairs.count * 2 {
             let ac = UIAlertController(title: "You won!", message: "You found all the matches", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: { [weak self] _ in
+                guard let pair = self?.pairs else { return }
+                self?.pairs = pair
+            }))
             present(ac, animated: true, completion: nil)
         }
     }
