@@ -38,8 +38,6 @@ class ViewController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushToSelectPairsView))
         
-        collectionView.bounces = false // need fix for big count
-        
         let pathToFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Pairs")
         if let loaded = try? Data(contentsOf: pathToFile) {
             if let decoded = try? JSONDecoder().decode([Pair].self, from: loaded) {
