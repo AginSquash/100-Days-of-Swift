@@ -26,6 +26,7 @@ class SelectPairsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         title = "Locked!"
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPair))
         
         auth()
@@ -136,6 +137,18 @@ class SelectPairsViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.item
+        
+        let name = "\(unlockedExistPairs[index].element1) : \(unlockedExistPairs[index].element2)"
+        let ac = UIAlertController(title: "Delete", message: "Do you want to delete \(name)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self, index] _ in
+            self?.unlockedExistPairs.remove(at: index)
+            self?.tableView.reloadData()
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.
